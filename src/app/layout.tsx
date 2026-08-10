@@ -1,0 +1,50 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "ZZB Construction Company Ltd | Civil & Building Engineers",
+  description:
+    "ZZB Construction Company is a wholly owned Indigenous engineering outfit specializing in Civil & Building Engineering, Equipment Hiring, Geosynthetics, and Bitumen. RC: 728609",
+  keywords: [
+    "ZZB Construction",
+    "Civil Engineering Nigeria",
+    "Building Contractors Lagos",
+    "Equipment Hiring",
+    "Geosynthetics",
+    "Bitumen Dealers",
+    "Road Construction",
+    "Bridge Construction",
+  ],
+  icons: {
+    icon: "/images/logo/zzb-logo.png",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  );
+}
