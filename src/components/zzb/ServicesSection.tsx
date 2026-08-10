@@ -1,36 +1,43 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Building2, Wrench, ShieldCheck, HardHat, ClipboardCheck, TrafficCone, TreePine, AlertTriangle, Package, CheckCircle2, FileSearch, BarChart3 } from 'lucide-react';
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 
 type Page = import('./Navigation').Page;
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.1 },
-  }),
-};
-
-const coreServices = [
-  { icon: Building2, title: 'Civil & Building Construction', desc: 'Rehabilitation, renovation and construction of roads, bridges, sewages, dams, structural works of all ramifications and building.', highlight: true },
-  { icon: Wrench, title: 'Equipment Hiring', desc: 'Wide range of heavy construction equipment available for hire. Tractors, excavators, graders, compactors, and more for your project needs.', highlight: false },
-  { icon: Package, title: 'Geosynthetics (High Grade)', desc: 'Authorized dealers of premium geotextile materials for road construction, erosion control, soil stabilization, and drainage systems.', highlight: false },
-  { icon: AlertTriangle, title: 'Bitumen Supply', desc: 'Reliable bitumen dealers providing premium grade bitumen for road construction, asphalt production, and waterproofing applications.', highlight: false },
+const services = [
+  {
+    title: 'Civil & Building',
+    desc: 'Rehabilitation, renovation and construction of roads, bridges, sewages, dams, structural works and buildings.',
+    image: '/images/projects/pdf_page10_img1.jpeg',
+    page: 'services' as Page,
+  },
+  {
+    title: 'Equipment Hiring',
+    desc: 'Wide range of heavy construction equipment — tractors, excavators, graders, compactors — available for hire.',
+    image: '/images/equipment/pdf_page21_img4.jpeg',
+    page: 'equipment' as Page,
+  },
+  {
+    title: 'Geosynthetics',
+    desc: 'Authorized high-grade dealers of premium geotextile materials for road construction and erosion control.',
+    image: '/images/geotextile/pdf_page22_img4.jpeg',
+    page: 'geotextile' as Page,
+  },
+  {
+    title: 'Bitumen Supply',
+    desc: 'Reliable dealers providing premium grade bitumen for road construction, asphalt and waterproofing.',
+    image: '/images/projects/pdf_page18_img1.jpeg',
+    page: 'contact' as Page,
+  },
 ];
 
-const advisoryServices = [
-  { icon: FileSearch, title: 'Buildability Advice' },
-  { icon: BarChart3, title: 'Value Engineering' },
-  { icon: ClipboardCheck, title: 'Project Programming' },
-  { icon: HardHat, title: 'High Level Project Management' },
-  { icon: TrafficCone, title: 'Traffic Management Planning' },
-  { icon: ShieldCheck, title: 'Health & Safety Advice' },
-  { icon: TreePine, title: 'Environmental Advice' },
-  { icon: Package, title: 'Procurement Choices' },
-  { icon: AlertTriangle, title: 'Risk Assessment & Control' },
-  { icon: CheckCircle2, title: 'Construction Phase Advice' },
+const advisory = [
+  'Buildability Advice', 'Value Engineering', 'Project Programming',
+  'High Level Project Management', 'Traffic Management Planning',
+  'Health & Safety Advice', 'Environmental Advice',
+  'Procurement Choices', 'Risk Assessment', 'Construction Phase Advice',
 ];
 
 interface ServicesSectionProps {
@@ -39,101 +46,70 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ onNavigate }: ServicesSectionProps) {
   return (
-    <section className="py-20 lg:py-28 bg-white" id="services">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="text-center mb-16"
+    <section className="py-0">
+      <div className="bg-card rounded-3xl mx-2 sm:mx-4 lg:mx-6 my-4 p-8 sm:p-12 lg:p-16 shadow-sm">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-4"
         >
-          <motion.span variants={fadeInUp} custom={0} className="inline-block text-zzb-lemon-dark font-semibold text-sm uppercase tracking-widest mb-3">
-            What We Do
-          </motion.span>
-          <motion.h2 variants={fadeInUp} custom={1} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zzb-dark mb-6">
-            Our <span className="text-zzb-lemon-dark">Services</span>
-          </motion.h2>
-          <motion.div variants={fadeInUp} custom={2} className="w-20 h-1 bg-zzb-lemon mx-auto rounded-full" />
-        </motion.div>
+          What We Do
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-2xl sm:text-3xl lg:text-4xl font-light leading-tight mb-12"
+        >
+          Our <span className="font-normal">services</span>
+        </motion.h2>
 
-        {/* Core Services - with images */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-20">
-          {coreServices.map((service, i) => (
+        <div className="grid sm:grid-cols-2 gap-6 mb-16">
+          {services.map((s, i) => (
             <motion.div
-              key={service.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              custom={i}
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              className={`relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer ${service.highlight ? 'md:col-span-2' : ''}`}
-              onClick={() => {
-                if (service.title.includes('Equipment')) onNavigate('equipment');
-                else if (service.title.includes('Geosynthetics')) onNavigate('geotextile');
-              }}
+              key={s.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + i * 0.1 }}
+              onClick={() => onNavigate(s.page)}
+              className="group cursor-pointer"
             >
-              <div className={`${service.highlight ? 'md:flex' : ''}`}>
-                <div className={`${service.highlight ? 'md:w-1/2' : 'h-48'} relative overflow-hidden`}>
-                  <Image
-                    src={
-                      service.title.includes('Equipment')
-                        ? '/images/equipment/pdf_page21_img4.jpeg'
-                        : service.title.includes('Geosynthetics')
-                        ? '/images/geotextile/pdf_page22_img4.jpeg'
-                        : service.title.includes('Bitumen')
-                        ? '/images/projects/pdf_page18_img1.jpeg'
-                        : '/images/projects/pdf_page10_img1.jpeg'
-                    }
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className={`${service.highlight ? 'md:w-1/2' : ''} p-6 lg:p-8 bg-white`}>
-                  <service.icon className={`w-10 h-10 mb-4 ${service.highlight ? 'text-zzb-lemon-dark' : 'text-zzb-lemon'}`} />
-                  <h3 className={`font-bold mb-3 ${service.highlight ? 'text-2xl' : 'text-xl'} text-zzb-dark`}>
-                    {service.title}
-                  </h3>
-                  <p className="text-zzb-gray leading-relaxed">
-                    {service.desc}
-                  </p>
-                  {service.highlight && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {['Roads', 'Bridges', 'Dams', 'Buildings', 'Structural Works'].map(tag => (
-                        <span key={tag} className="bg-zzb-lemon/10 text-zzb-lemon-dark text-xs font-medium px-3 py-1 rounded-full">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
+                <Image
+                  src={s.image}
+                  alt={s.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ArrowUpRight className="w-3.5 h-3.5 text-foreground" />
                 </div>
               </div>
+              <h3 className="font-medium text-base mb-1.5">{s.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Advisory Services */}
+        {/* Advisory strip */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="bg-zzb-light-gray rounded-2xl p-8 lg:p-12"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-muted rounded-2xl p-6 sm:p-8"
         >
-          <motion.h3 variants={fadeInUp} custom={0} className="text-2xl font-bold text-zzb-dark mb-8 text-center">
-            Advisory & Consulting Services
-          </motion.h3>
-          <motion.div variants={fadeInUp} custom={1} className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {advisoryServices.map((service) => (
-              <div
-                key={service.title}
-                className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
-              >
-                <service.icon className="w-5 h-5 text-zzb-lemon-dark flex-shrink-0" />
-                <span className="text-sm font-medium text-zzb-dark">{service.title}</span>
-              </div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-5">Consulting & Advisory</p>
+          <div className="flex flex-wrap gap-2">
+            {advisory.map(a => (
+              <span key={a} className="text-xs text-card-foreground bg-card px-3 py-1.5 rounded-full">
+                {a}
+              </span>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

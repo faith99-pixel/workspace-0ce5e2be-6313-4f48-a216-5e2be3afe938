@@ -3,30 +3,21 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 
-type Page =
-  | 'home'
-  | 'about'
-  | 'services'
-  | 'projects'
-  | 'equipment'
-  | 'geotextile'
-  | 'contact';
+type Page = 'home' | 'about' | 'services' | 'projects' | 'equipment' | 'geotextile' | 'contact';
 
-const navItems: { label: string; page: Page; children?: { label: string; page: Page }[] }[] = [
+const navLinks: { label: string; page: Page }[] = [
   { label: 'Home', page: 'home' },
-  { label: 'About Us', page: 'about' },
-  {
-    label: 'Services',
-    page: 'services',
-    children: [
-      { label: 'Equipment Hiring', page: 'equipment' },
-      { label: 'Geosynthetics', page: 'geotextile' },
-    ],
-  },
+  { label: 'About', page: 'about' },
+  { label: 'Services', page: 'services' },
   { label: 'Projects', page: 'projects' },
   { label: 'Contact', page: 'contact' },
+];
+
+const serviceLinks: { label: string; page: Page }[] = [
+  { label: 'Equipment Hiring', page: 'equipment' },
+  { label: 'Geosynthetics', page: 'geotextile' },
 ];
 
 interface NavigationProps {
@@ -35,198 +26,127 @@ interface NavigationProps {
 }
 
 export default function Navigation({ currentPage, onNavigate }: NavigationProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNav = (page: Page) => {
     onNavigate(page);
-    setMobileOpen(false);
-    setDropdownOpen(false);
+    setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      {/* Top bar */}
-      <div className="bg-zzb-dark text-white/80 text-sm py-2 px-4 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <a href="tel:08034829700" className="flex items-center gap-2 hover:text-zzb-lemon transition-colors">
-              <Phone className="w-3.5 h-3.5" />
-              <span>08034829700</span>
-            </a>
-            <a href="mailto:dominiczzbltd@yahoo.com" className="flex items-center gap-2 hover:text-zzb-lemon transition-colors">
-              <Mail className="w-3.5 h-3.5" />
-              <span>dominiczzbltd@yahoo.com</span>
-            </a>
-          </div>
-          <div className="text-zzb-lemon font-medium tracking-wider text-xs uppercase">
-            RC: 728609
-          </div>
-        </div>
+      {/* Floating menu button */}
+      <div className="fixed top-6 right-6 z-[60]">
+        <AnimatePresence mode="wait">
+          {!menuOpen ? (
+            <motion.button
+              key="menu-btn"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              onClick={() => setMenuOpen(true)}
+              className="bg-white rounded-full px-6 py-3 flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-shadow cursor-pointer"
+            >
+              <div className="flex flex-col gap-1.5">
+                <span className="block w-5 h-px bg-foreground" />
+                <span className="block w-5 h-px bg-foreground" />
+              </div>
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Menu</span>
+            </motion.button>
+          ) : null}
+        </AnimatePresence>
       </div>
 
-      {/* Main nav */}
-      <motion.nav
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-lg'
-            : 'bg-white shadow-sm'
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+      {/* Logo - top left */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        onClick={() => handleNav('home')}
+        className="fixed top-6 left-6 z-[60] flex items-center gap-2.5 group cursor-pointer"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 md:h-20">
-            {/* Logo */}
-            <button
-              onClick={() => handleNav('home')}
-              className="flex items-center gap-3 group"
-            >
-              <Image
-                src="/images/logo/zzb-logo.png"
-                alt="ZZB Construction Logo"
-                width={50}
-                height={50}
-                className="object-contain"
-              />
-              <div className="hidden sm:block">
-                <div className="text-zzb-dark font-bold text-lg leading-tight tracking-tight">
-                  ZZB
-                </div>
-                <div className="text-zzb-gray text-[10px] uppercase tracking-widest leading-tight">
-                  Construction Company Ltd
-                </div>
-              </div>
-            </button>
+        <Image src="/images/logo/zzb-logo.png" alt="ZZB" width={36} height={36} className="object-contain" />
+        <div className="hidden sm:block">
+          <div className="text-sm font-bold tracking-tight leading-none">ZZB</div>
+          <div className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground leading-none mt-0.5">Construction</div>
+        </div>
+      </motion.button>
 
-            {/* Desktop nav */}
-            <div className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <div
-                  key={item.page}
-                  className="relative"
-                  onMouseEnter={() => item.children && setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}
-                >
-                  <button
-                    onClick={() =>
-                      item.children ? setDropdownOpen(!dropdownOpen) : handleNav(item.page)
-                    }
-                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
-                      currentPage === item.page
-                        ? 'text-zzb-lemon-dark bg-zzb-lemon/10'
-                        : 'text-zzb-gray hover:text-zzb-dark hover:bg-zzb-lemon/5'
-                    }`}
-                  >
-                    {item.label}
-                    {item.children && <ChevronDown className="w-3.5 h-3.5" />}
-                  </button>
-
-                  {/* Dropdown */}
-                  <AnimatePresence>
-                    {item.children && dropdownOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[200px] overflow-hidden"
-                      >
-                        {item.children.map((child) => (
-                          <button
-                            key={child.page}
-                            onClick={() => handleNav(child.page)}
-                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                              currentPage === child.page
-                                ? 'bg-zzb-lemon/10 text-zzb-lemon-dark font-medium'
-                                : 'text-zzb-gray hover:bg-zzb-lemon/5 hover:text-zzb-dark'
-                            }`}
-                          >
-                            {child.label}
-                          </button>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-              <button
-                onClick={() => handleNav('contact')}
-                className="ml-3 bg-zzb-lemon hover:bg-zzb-lemon-dark text-zzb-dark font-semibold px-5 py-2.5 rounded-md transition-all duration-200 text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5"
+      {/* Full-screen overlay menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[55] bg-foreground/95 backdrop-blur-sm"
+          >
+            <div className="h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24">
+              <motion.nav
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ delay: 0.1, duration: 0.4 }}
+                className="space-y-1 max-w-2xl"
               >
-                Get a Quote
-              </button>
+                {navLinks.map((link, i) => (
+                  <motion.button
+                    key={link.page}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.15 + i * 0.07 }}
+                    onClick={() => handleNav(link.page)}
+                    className="group flex items-center justify-between w-full py-4 border-b border-white/10 text-left cursor-pointer"
+                  >
+                    <span className={`text-3xl sm:text-4xl lg:text-5xl font-light transition-colors ${currentPage === link.page ? 'text-primary' : 'text-white/90 group-hover:text-primary'}`}>
+                      {link.label}
+                    </span>
+                    <ArrowUpRight className={`w-5 h-5 transition-all ${currentPage === link.page ? 'text-primary opacity-100' : 'text-white/30 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0'}`} />
+                  </motion.button>
+                ))}
+
+                <div className="pt-6 mt-4 border-t border-white/10">
+                  <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-4">Services</p>
+                  <div className="flex flex-wrap gap-3">
+                    {serviceLinks.map((link) => (
+                      <button
+                        key={link.page}
+                        onClick={() => handleNav(link.page)}
+                        className="text-sm text-white/60 hover:text-primary transition-colors cursor-pointer"
+                      >
+                        {link.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.nav>
+
+              {/* Contact info in menu */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="absolute bottom-8 left-8 sm:left-16 lg:left-24"
+              >
+                <p className="text-white/30 text-xs uppercase tracking-[0.2em] mb-2">Contact</p>
+                <a href="tel:08034829700" className="text-white/60 text-sm hover:text-primary transition-colors">08034829700</a>
+                <span className="text-white/20 mx-3">|</span>
+                <a href="mailto:dominiczzbltd@yahoo.com" className="text-white/60 text-sm hover:text-primary transition-colors">dominiczzbltd@yahoo.com</a>
+              </motion.div>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Close button */}
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-md text-zzb-gray hover:text-zzb-dark hover:bg-gray-100"
-              aria-label="Toggle menu"
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all cursor-pointer"
             >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <X className="w-5 h-5" />
             </button>
-          </div>
-        </div>
-
-        {/* Mobile nav */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
-            >
-              <div className="px-4 py-3 space-y-1">
-                {navItems.map((item) => (
-                  <div key={item.page}>
-                    <button
-                      onClick={() => handleNav(item.page)}
-                      className={`w-full text-left px-4 py-3 rounded-md text-sm font-medium transition-colors ${
-                        currentPage === item.page
-                          ? 'bg-zzb-lemon/10 text-zzb-lemon-dark'
-                          : 'text-zzb-gray hover:bg-gray-50'
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                    {item.children && (
-                      <div className="ml-6 space-y-1">
-                        {item.children.map((child) => (
-                          <button
-                            key={child.page}
-                            onClick={() => handleNav(child.page)}
-                            className="w-full text-left px-4 py-2 rounded-md text-sm text-zzb-gray hover:bg-gray-50"
-                          >
-                            {child.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-                <button
-                  onClick={() => handleNav('contact')}
-                  className="w-full mt-2 bg-zzb-lemon hover:bg-zzb-lemon-dark text-zzb-dark font-semibold px-5 py-3 rounded-md transition-all text-sm"
-                >
-                  Get a Quote
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-      <div className="stripe-divider" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

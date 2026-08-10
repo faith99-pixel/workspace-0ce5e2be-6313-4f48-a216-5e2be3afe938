@@ -13,12 +13,6 @@ import TeamSection from '@/components/zzb/TeamSection';
 import ContactSection from '@/components/zzb/ContactSection';
 import Footer from '@/components/zzb/Footer';
 
-const pageVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
-};
-
 function PageContent({ page, onNavigate }: { page: Page; onNavigate: (p: Page) => void }) {
   switch (page) {
     case 'about':
@@ -37,7 +31,7 @@ function PageContent({ page, onNavigate }: { page: Page; onNavigate: (p: Page) =
     default:
       return (
         <>
-          <HeroSection onNavigate={onNavigate} />
+          <HeroSection />
           <AboutSection />
           <ServicesSection onNavigate={onNavigate} />
           <ProjectsSection />
@@ -58,24 +52,24 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background font-[var(--font-geist-sans)]">
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
 
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.35 }}
           >
             <PageContent page={currentPage} onNavigate={handleNavigate} />
           </motion.div>
         </AnimatePresence>
       </main>
 
-      <Footer currentPage={currentPage} onNavigate={handleNavigate} />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }

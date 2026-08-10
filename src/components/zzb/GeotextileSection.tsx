@@ -3,81 +3,80 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.1 },
-  }),
-};
-
 const products = [
-  { src: '/images/geotextile/pdf_page22_img1.jpeg', name: 'Woven Geotextile', desc: 'High-strength woven geotextile for soil reinforcement and stabilization in road construction.' },
-  { src: '/images/geotextile/pdf_page22_img2.jpeg', name: 'Non-Woven Geotextile', desc: 'Non-woven fabric for drainage, filtration and separation layers in civil engineering.' },
-  { src: '/images/geotextile/pdf_page22_img3.jpeg', name: 'Geotextile Roll', desc: 'Premium grade rolls for large-scale road and infrastructure projects.' },
-  { src: '/images/geotextile/pdf_page22_img4.jpeg', name: 'Geocomposite', desc: 'Composite materials combining multiple functions for enhanced performance.' },
-  { src: '/images/geotextile/pdf_page22_img5.jpeg', name: 'Geotextile Sheet', desc: 'Industrial-grade geotextile sheets for erosion control and soil protection.' },
-  { src: '/images/geotextile/pdf_page22_img6.jpeg', name: 'HDPE Geomembrane', desc: 'Impermeable liner material for landfill, reservoir and containment applications.' },
-  { src: '/images/geotextile/pdf_page22_img7.jpeg', name: 'Geogrid', desc: 'Polymer grid for reinforcement of retaining walls, embankments and subgrades.' },
-  { src: '/images/geotextile/pdf_page22_img8.jpeg', name: 'Geotextile Sample', desc: 'Sample specification sheets available for project bidding and procurement.' },
+  { src: '/images/geotextile/pdf_page22_img1.jpeg', name: 'Woven Geotextile' },
+  { src: '/images/geotextile/pdf_page22_img2.jpeg', name: 'Non-Woven Geotextile' },
+  { src: '/images/geotextile/pdf_page22_img3.jpeg', name: 'Geotextile Roll' },
+  { src: '/images/geotextile/pdf_page22_img4.jpeg', name: 'Geocomposite' },
+  { src: '/images/geotextile/pdf_page22_img5.jpeg', name: 'Geotextile Sheet' },
+  { src: '/images/geotextile/pdf_page22_img6.jpeg', name: 'HDPE Geomembrane' },
+  { src: '/images/geotextile/pdf_page22_img7.jpeg', name: 'Geogrid' },
+  { src: '/images/geotextile/pdf_page22_img8.jpeg', name: 'Sample Spec' },
 ];
+
+const apps = ['Road Construction', 'Erosion Control', 'Soil Stabilization', 'Drainage', 'Landfill Liners', 'Retaining Walls', 'Embankment', 'Waterproofing'];
 
 export default function GeotextileSection() {
   return (
-    <section className="py-20 lg:py-28 construction-pattern">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="text-center mb-16">
-          <motion.span variants={fadeInUp} custom={0} className="inline-block text-zzb-lemon-dark font-semibold text-sm uppercase tracking-widest mb-3">
-            High Grade Dealers
-          </motion.span>
-          <motion.h2 variants={fadeInUp} custom={1} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zzb-dark mb-6">
-            Geosynthetics & <span className="text-zzb-lemon-dark">Geotextile</span>
-          </motion.h2>
-          <motion.div variants={fadeInUp} custom={2} className="w-20 h-1 bg-zzb-lemon mx-auto rounded-full mb-6" />
-          <motion.p variants={fadeInUp} custom={3} className="text-zzb-gray max-w-3xl mx-auto text-lg">
-            As authorized high-grade dealers of geosynthetic materials, ZZB supplies premium
-            geotextile products for road construction, erosion control, soil stabilization,
-            drainage systems, and environmental protection projects across Nigeria.
-          </motion.p>
-        </motion.div>
-
-        {/* Applications banner */}
-        <motion.div
-          initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="bg-zzb-dark rounded-2xl p-8 mb-16"
+    <section className="py-0">
+      <div className="bg-card rounded-3xl mx-2 sm:mx-4 lg:mx-6 my-4 p-8 sm:p-12 lg:p-16 shadow-sm">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-4"
         >
-          <motion.h3 variants={fadeInUp} custom={0} className="text-xl font-bold text-white mb-6 text-center">
-            Geotextile Applications
-          </motion.h3>
-          <motion.div variants={fadeInUp} custom={1} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {['Road Construction', 'Erosion Control', 'Soil Stabilization', 'Drainage Systems', 'Landfill Liners', 'Retaining Walls', 'Embankment Reinforcement', 'Waterproofing'].map(app => (
-              <div key={app} className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-zzb-lemon rounded-full flex-shrink-0" />
-                <span className="text-white/70 text-sm">{app}</span>
-              </div>
-            ))}
-          </motion.div>
+          High Grade Dealers
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-2xl sm:text-3xl lg:text-4xl font-light leading-tight mb-4"
+        >
+          Geosynthetics &amp; <span className="font-normal">geotextile</span>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+          className="text-muted-foreground text-sm sm:text-base max-w-xl leading-relaxed mb-10"
+        >
+          Authorized dealers of premium geosynthetic materials for road construction,
+          erosion control, soil stabilization, and environmental protection projects.
+        </motion.p>
+
+        {/* Applications */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap gap-2 mb-12"
+        >
+          {apps.map(a => (
+            <span key={a} className="text-[11px] text-muted-foreground border border-border rounded-full px-3 py-1 uppercase tracking-wider">
+              {a}
+            </span>
+          ))}
         </motion.div>
 
-        {/* Product grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product, i) => (
+        {/* Products grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          {products.map((p, i) => (
             <motion.div
-              key={product.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              custom={i}
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all border border-gray-100"
+              key={p.name}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + i * 0.06 }}
+              className="group"
             >
-              <div className="relative h-48 overflow-hidden">
-                <Image src={product.src} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="relative aspect-square rounded-xl overflow-hidden mb-2">
+                <Image src={p.src} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
-              <div className="p-5">
-                <h3 className="font-bold text-base text-zzb-dark mb-2 group-hover:text-zzb-lemon-dark transition-colors">{product.name}</h3>
-                <p className="text-zzb-gray text-sm leading-relaxed">{product.desc}</p>
-              </div>
+              <p className="text-xs font-medium text-center">{p.name}</p>
             </motion.div>
           ))}
         </div>
