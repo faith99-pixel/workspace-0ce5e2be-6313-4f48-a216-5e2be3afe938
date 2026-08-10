@@ -56,6 +56,7 @@ export default function EquipmentSection() {
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
                 <Image src={item.src} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                quality={100}
               </div>
               <p className="text-sm font-medium">{item.name}</p>
             </motion.div>

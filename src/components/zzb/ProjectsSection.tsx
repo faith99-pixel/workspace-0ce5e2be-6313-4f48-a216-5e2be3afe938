@@ -97,6 +97,7 @@ export default function ProjectsSection() {
                 className="group cursor-pointer aspect-[4/3] rounded-xl overflow-hidden relative"
               >
                 <Image src={p.src} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                quality={100}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <p className="text-white text-xs font-medium">{p.title}</p>
@@ -148,6 +149,7 @@ export default function ProjectsSection() {
               )}
               <motion.div key={light} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="relative max-w-4xl w-full aspect-[4/3]" onClick={e => e.stopPropagation()}>
                 <Image src={filtered[light].src} alt={filtered[light].title} fill className="object-contain" />
+                quality={100}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
                   <p className="text-white font-medium">{filtered[light].title}</p>
                   <p className="text-white/50 text-sm">{filtered[light].cat}</p>

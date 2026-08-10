@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { X, ArrowUpRight } from 'lucide-react';
@@ -12,12 +12,9 @@ const navLinks: { label: string; page: Page }[] = [
   { label: 'About', page: 'about' },
   { label: 'Services', page: 'services' },
   { label: 'Projects', page: 'projects' },
+  { label: 'Equipment', page: 'equipment' },
+  { label: 'Geotextile', page: 'geotextile' },
   { label: 'Contact', page: 'contact' },
-];
-
-const serviceLinks: { label: string; page: Page }[] = [
-  { label: 'Equipment Hiring', page: 'equipment' },
-  { label: 'Geosynthetics', page: 'geotextile' },
 ];
 
 interface NavigationProps {
@@ -58,18 +55,23 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
         </AnimatePresence>
       </div>
 
-      {/* Logo - top left */}
+      {/* Logo - top left, larger size, blend mode removes visual bg */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
         onClick={() => handleNav('home')}
-        className="fixed top-6 left-6 z-[60] flex items-center gap-2.5 group cursor-pointer"
+        className="fixed top-5 left-5 sm:top-6 sm:left-6 z-[60] flex items-center gap-3 group cursor-pointer"
       >
-        <Image src="/images/logo/zzb-logo.png" alt="ZZB" width={36} height={36} className="object-contain" />
-        <div className="hidden sm:block">
-          <div className="text-sm font-bold tracking-tight leading-none">ZZB</div>
-          <div className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground leading-none mt-0.5">Construction</div>
+        <div className="relative w-[52px] h-[52px] sm:w-[60px] sm:h-[60px]">
+          <Image
+            src="/images/logo/zzb-logo.png"
+            alt="ZZB"
+            fill
+            className="object-contain mix-blend-multiply"
+            quality={100}
+            priority
+          />
         </div>
       </motion.button>
 
@@ -96,34 +98,18 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
                     key={link.page}
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + i * 0.07 }}
+                    transition={{ delay: 0.15 + i * 0.06 }}
                     onClick={() => handleNav(link.page)}
-                    className="group flex items-center justify-between w-full py-4 border-b border-white/10 text-left cursor-pointer"
+                    className="group flex items-center justify-between w-full py-3.5 border-b border-white/10 text-left cursor-pointer"
                   >
-                    <span className={`text-3xl sm:text-4xl lg:text-5xl font-light transition-colors ${currentPage === link.page ? 'text-primary' : 'text-white/90 group-hover:text-primary'}`}>
+                    <span className={`text-2xl sm:text-3xl lg:text-4xl font-light transition-colors ${currentPage === link.page ? 'text-primary' : 'text-white/90 group-hover:text-primary'}`}>
                       {link.label}
                     </span>
-                    <ArrowUpRight className={`w-5 h-5 transition-all ${currentPage === link.page ? 'text-primary opacity-100' : 'text-white/30 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0'}`} />
+                    <ArrowUpRight className={`w-4 h-4 transition-all ${currentPage === link.page ? 'text-primary opacity-100' : 'text-white/30 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0'}`} />
                   </motion.button>
                 ))}
-
-                <div className="pt-6 mt-4 border-t border-white/10">
-                  <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-4">Services</p>
-                  <div className="flex flex-wrap gap-3">
-                    {serviceLinks.map((link) => (
-                      <button
-                        key={link.page}
-                        onClick={() => handleNav(link.page)}
-                        className="text-sm text-white/60 hover:text-primary transition-colors cursor-pointer"
-                      >
-                        {link.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
               </motion.nav>
 
-              {/* Contact info in menu */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -137,7 +123,6 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
               </motion.div>
             </div>
 
-            {/* Close button */}
             <button
               onClick={() => setMenuOpen(false)}
               className="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all cursor-pointer"

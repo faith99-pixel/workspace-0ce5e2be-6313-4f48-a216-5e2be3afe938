@@ -75,6 +75,7 @@ export default function GeotextileSection() {
             >
               <div className="relative aspect-square rounded-xl overflow-hidden mb-2">
                 <Image src={p.src} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                quality={100}
               </div>
               <p className="text-xs font-medium text-center">{p.name}</p>
             </motion.div>

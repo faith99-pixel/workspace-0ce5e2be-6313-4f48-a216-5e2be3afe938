@@ -12,36 +12,29 @@ import GeotextileSection from '@/components/zzb/GeotextileSection';
 import TeamSection from '@/components/zzb/TeamSection';
 import ContactSection from '@/components/zzb/ContactSection';
 import Footer from '@/components/zzb/Footer';
+import PageWrapper from '@/components/zzb/PageWrapper';
 
-function PageContent({ page, onNavigate }: { page: Page; onNavigate: (p: Page) => void }) {
-  switch (page) {
-    case 'about':
-      return <AboutSection />;
-    case 'services':
-      return <ServicesSection onNavigate={onNavigate} />;
-    case 'projects':
-      return <ProjectsSection />;
-    case 'equipment':
-      return <EquipmentSection />;
-    case 'geotextile':
-      return <GeotextileSection />;
-    case 'contact':
-      return <ContactSection />;
-    case 'home':
-    default:
-      return (
-        <>
-          <HeroSection />
-          <AboutSection />
-          <ServicesSection onNavigate={onNavigate} />
-          <ProjectsSection />
-          <EquipmentSection />
-          <GeotextileSection />
-          <TeamSection />
-          <ContactSection />
-        </>
-      );
-  }
+function SubPage({ page, onNavigate }: { page: Page; onNavigate: (p: Page) => void }) {
+  const labels: Record<Page, string> = {
+    home: '',
+    about: 'About ZZB',
+    services: 'What We Do',
+    projects: 'Portfolio',
+    equipment: 'Our Fleet',
+    geotextile: 'Materials',
+    contact: 'Get In Touch',
+  };
+
+  return (
+    <PageWrapper label={labels[page] || ''} onNavigate={onNavigate}>
+      {page === 'about' && <AboutSection />}
+      {page === 'services' && <ServicesSection onNavigate={onNavigate} />}
+      {page === 'projects' && <ProjectsSection />}
+      {page === 'equipment' && <EquipmentSection />}
+      {page === 'geotextile' && <GeotextileSection />}
+      {page === 'contact' && <ContactSection />}
+    </PageWrapper>
+  );
 }
 
 export default function Home() {
@@ -64,7 +57,20 @@ export default function Home() {
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.35 }}
           >
-            <PageContent page={currentPage} onNavigate={handleNavigate} />
+            {currentPage === 'home' ? (
+              <>
+                <HeroSection />
+                <AboutSection />
+                <ServicesSection onNavigate={handleNavigate} />
+                <ProjectsSection />
+                <EquipmentSection />
+                <GeotextileSection />
+                <TeamSection />
+                <ContactSection />
+              </>
+            ) : (
+              <SubPage page={currentPage} onNavigate={handleNavigate} />
+            )}
           </motion.div>
         </AnimatePresence>
       </main>
