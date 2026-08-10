@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const products = [
-  { src: '/images/geotextile/pdf_page22_img1.jpeg', name: 'Woven Geotextile' },
-  { src: '/images/geotextile/pdf_page22_img2.jpeg', name: 'Non-Woven Geotextile' },
-  { src: '/images/geotextile/pdf_page22_img3.jpeg', name: 'Geotextile Roll' },
-  { src: '/images/geotextile/pdf_page22_img4.jpeg', name: 'Geocomposite' },
-  { src: '/images/geotextile/pdf_page22_img5.jpeg', name: 'Geotextile Sheet' },
-  { src: '/images/geotextile/pdf_page22_img6.jpeg', name: 'HDPE Geomembrane' },
-  { src: '/images/geotextile/pdf_page22_img7.jpeg', name: 'Geogrid' },
-  { src: '/images/geotextile/pdf_page22_img8.jpeg', name: 'Sample Spec' },
+  { src: '/images/geotextile/woven-geotextile.png', name: 'Woven Geotextile' },
+  { src: '/images/geotextile/nonwoven-geotextile.png', name: 'Non-Woven Geotextile' },
+  { src: '/images/geotextile/geotextile-roll.png', name: 'Geotextile Roll' },
+  { src: '/images/geotextile/geocomposite.png', name: 'Geocomposite' },
+  { src: '/images/geotextile/geotextile-sheet.png', name: 'Geotextile Sheet' },
+  { src: '/images/geotextile/hdpe-geomembrane.png', name: 'HDPE Geomembrane' },
+  { src: '/images/geotextile/geogrid.png', name: 'Geogrid' },
+  { src: '/images/geotextile/sample-spec.png', name: 'Sample Spec' },
 ];
 
 const apps = ['Road Construction', 'Erosion Control', 'Soil Stabilization', 'Drainage', 'Landfill Liners', 'Retaining Walls', 'Embankment', 'Waterproofing'];

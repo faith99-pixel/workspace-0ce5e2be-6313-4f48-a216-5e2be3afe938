@@ -55,7 +55,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
         </AnimatePresence>
       </div>
 
-      {/* Logo - top left, larger size, blend mode removes visual bg */}
+      {/* Logo - top left, transparent background, no text */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -63,12 +63,12 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
         onClick={() => handleNav('home')}
         className="fixed top-5 left-5 sm:top-6 sm:left-6 z-[60] flex items-center gap-3 group cursor-pointer"
       >
-        <div className="relative w-[52px] h-[52px] sm:w-[60px] sm:h-[60px]">
+        <div className="relative w-[72px] h-[72px] sm:w-[88px] sm:h-[88px]">
           <Image
-            src="/images/logo/zzb-logo.png"
+            src="/images/logo/zzb-logo-nobg@4x.png"
             alt="ZZB"
             fill
-            className="object-contain mix-blend-multiply"
+            className="object-contain"
             quality={100}
             priority
           />
