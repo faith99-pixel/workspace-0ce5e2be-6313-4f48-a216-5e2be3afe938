@@ -1,6 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+const clients = [
+  { name: 'UACN Properties', logo: '/images/clients/uac.svg' },
+  { name: 'MTN Nigeria', logo: '/images/clients/mtn.jpg' },
+  { name: 'AlanDick & Co', logo: '/images/clients/alandick.jpg' },
+  { name: 'Eldorado Nigeria', logo: '/images/clients/eldorado.png' },
+  { name: 'FERMA', logo: '/images/clients/ferma.jpg' },
+  { name: 'Lagos State', logo: '/images/clients/lagos.jpg' },
+  { name: 'Aero Contractors', logo: '/images/clients/aero.png' },
+];
+
+const doubled = [...clients, ...clients, ...clients];
 
 export default function AboutSection() {
   return (
@@ -48,7 +61,7 @@ export default function AboutSection() {
                 dams, structural works of all ramifications and building.
               </p>
               <p>
-                Driven by the slogan <strong className="text-card-foreground font-medium">"We Choose To Differ"</strong>, we have
+                Driven by the slogan <strong className="text-card-foreground font-medium">&quot;We Choose To Differ&quot;</strong>, we have
                 enjoyed sustainable business relationships with clients that cut across
                 corporate, private, federal, state and local government agencies.
               </p>
@@ -71,7 +84,6 @@ export default function AboutSection() {
                 engineering contractors in Nigeria.
               </p>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +98,6 @@ export default function AboutSection() {
                 development.
               </p>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +115,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Client logos */}
+        {/* Client logos marquee */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,13 +123,28 @@ export default function AboutSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 pt-12 border-t border-border"
         >
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-6">Trusted By</p>
-          <div className="flex flex-wrap gap-3">
-            {['UACN Properties', 'MTN Nigeria', 'AlanDick & Co', 'FERMA', 'Aero Contractors', 'Lagos State', 'Osun State', 'Kwara State'].map(c => (
-              <span key={c} className="text-xs text-muted-foreground border border-border rounded-full px-4 py-1.5">
-                {c}
-              </span>
-            ))}
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-8">Trusted By</p>
+          <div className="relative overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-card to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-card to-transparent z-10 pointer-events-none" />
+            <div className="flex gap-16 animate-marquee w-max">
+              {doubled.map((client, i) => (
+                <div key={i} className="flex flex-col items-center gap-3 min-w-[120px] group">
+                  <div className="relative w-24 h-16 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300">
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      fill
+                      sizes="96px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground text-center whitespace-nowrap">
+                    {client.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
