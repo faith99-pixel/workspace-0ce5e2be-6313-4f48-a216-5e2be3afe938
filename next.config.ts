@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [100, 90, 75],
   },
-  allowedDevOrigins: ['*.space-z.ai'],
+  allowedDevOrigins: ['*.space-z.ai', '10.21.130.123'],
 };
 
 export default nextConfig;
