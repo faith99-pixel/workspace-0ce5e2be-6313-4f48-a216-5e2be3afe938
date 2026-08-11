@@ -73,7 +73,8 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Phone</p>
-                <a href="tel:+2348034829700" className="text-sm hover:text-primary transition-colors">+234 803 482 9700, +234 803 304 1723</a>
+                <a href="tel:+2348034829700" className="text-sm hover:text-primary transition-colors block">+234 803 482 9700</a>
+                <a href="tel:+2348033041723" className="text-sm hover:text-primary transition-colors block">+234 803 304 1723</a>
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Email</p>
