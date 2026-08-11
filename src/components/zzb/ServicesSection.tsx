@@ -82,6 +82,7 @@ export default function ServicesSection({ onNavigate }: ServicesSectionProps) {
                   src={s.image}
                   alt={s.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
                   quality={100}
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />

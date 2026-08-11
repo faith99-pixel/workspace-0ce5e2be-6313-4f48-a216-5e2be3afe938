@@ -68,6 +68,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
             src="/images/logo/zzb-logo-nobg@4x.png"
             alt="ZZB"
             fill
+            sizes="(max-width: 640px) 72px, 88px"
             className="object-contain"
             quality={100}
             priority

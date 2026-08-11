@@ -60,7 +60,7 @@ export default function EquipmentSection() {
               onClick={() => setLightbox(item)}
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
-                <Image src={item.src} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" quality={100} />
+                <Image src={item.src} alt={item.name} fill sizes="(max-width: 640px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" quality={100} />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </div>
               <p className="text-sm font-medium">{item.name}</p>
@@ -106,7 +106,7 @@ export default function EquipmentSection() {
               className="relative w-full max-w-3xl aspect-[4/3] rounded-xl overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
-              <Image src={lightbox.src} alt={lightbox.name} fill className="object-cover" quality={100} />
+              <Image src={lightbox.src} alt={lightbox.name} fill sizes="100vw" className="object-cover" quality={100} />
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 10 }}

@@ -56,8 +56,7 @@ export default function TeamSection() {
               transition={{ delay: 0.1 + i * 0.12 }}
             >
               <div className="relative w-32 h-40 sm:w-36 sm:h-44 mx-auto mb-5 rounded-xl overflow-hidden">
-                <Image src={m.image} alt={m.name} fill className="object-cover object-top" />
-                quality={100}
+                <Image src={m.image} alt={m.name} fill sizes="(max-width: 640px) 128px, 144px" className="object-cover object-top" quality={100} />
               </div>
               <h3 className="text-center font-medium text-base mb-1">{m.name}</h3>
               <p className="text-center text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-3">{m.role}</p>
