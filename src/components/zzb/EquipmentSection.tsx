@@ -70,8 +70,8 @@ export default function EquipmentSection() {
           className="mt-12 pt-8 border-t border-border text-center"
         >
           <p className="text-muted-foreground text-sm mb-4">Need equipment for your project?</p>
-          <a href="tel:08034829700" className="inline-block bg-foreground text-card text-xs uppercase tracking-[0.15em] px-6 py-3 rounded-full hover:bg-primary transition-colors">
-            Call 08034829700
+          <a href="tel:+2348034829700" className="inline-block bg-foreground text-card text-xs uppercase tracking-[0.15em] px-6 py-3 rounded-full hover:bg-primary transition-colors">
+            Call +234 803 482 9700
           </a>
         </motion.div>
       </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const pastProjects = [
@@ -14,6 +15,38 @@ const pastProjects = [
 ];
 
 export default function ContactSection() {
+  const [formState, setFormState] = useState({
+    name: '', phone: '', email: '', service: '', message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      });
+      if (res.ok) {
+        setStatus('sent');
+        setFormState({ name: '', phone: '', email: '', service: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 4000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+    }
+  };
+
   return (
     <section className="py-0">
       <div className="bg-card rounded-3xl mx-2 sm:mx-4 lg:mx-6 my-4 p-8 sm:p-12 lg:p-16 shadow-sm">
@@ -51,7 +84,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Phone</p>
-                <a href="tel:08034829700" className="text-sm hover:text-primary transition-colors">08034829700, 08033041723</a>
+                <a href="tel:+2348034829700" className="text-sm hover:text-primary transition-colors">+234 803 482 9700, +234 803 304 1723</a>
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Email</p>
@@ -86,41 +119,84 @@ export default function ContactSection() {
             transition={{ delay: 0.2 }}
             className="lg:pt-12"
           >
-            <form className="space-y-5" onSubmit={e => e.preventDefault()}>
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Name</label>
-                  <input type="text" placeholder="Your name" className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50" />
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formState.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50"
+                  />
                 </div>
                 <div>
                   <label className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Phone</label>
-                  <input type="tel" placeholder="Your phone" className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50" />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formState.phone}
+                    onChange={handleChange}
+                    placeholder="Your phone"
+                    className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50"
+                  />
                 </div>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Email</label>
-                <input type="email" placeholder="Your email" className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={formState.email}
+                  onChange={handleChange}
+                  placeholder="Your email"
+                  className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50"
+                />
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Service</label>
-                <select className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors text-muted-foreground">
-                  <option>Select a service</option>
-                  <option>Civil &amp; Building Construction</option>
-                  <option>Equipment Hiring</option>
-                  <option>Geosynthetics Supply</option>
-                  <option>Bitumen Supply</option>
+                <select
+                  name="service"
+                  value={formState.service}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors text-muted-foreground"
+                >
+                  <option value="">Select a service</option>
+                  <option value="Civil & Building Construction">Civil &amp; Building Construction</option>
+                  <option value="Equipment Hiring">Equipment Hiring</option>
+                  <option value="Geosynthetics Supply">Geosynthetics Supply</option>
+                  <option value="Bitumen Supply">Bitumen Supply</option>
                 </select>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Message</label>
-                <textarea rows={3} placeholder="Tell us about your project..." className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors resize-none placeholder:text-muted-foreground/50" />
+                <textarea
+                  name="message"
+                  required
+                  rows={3}
+                  value={formState.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your project..."
+                  className="w-full bg-transparent border-b border-border focus:border-foreground pb-2 text-sm outline-none transition-colors resize-none placeholder:text-muted-foreground/50"
+                />
               </div>
               <button
                 type="submit"
-                className="bg-foreground text-card text-xs uppercase tracking-[0.15em] px-8 py-3 rounded-full hover:bg-primary transition-colors mt-2 cursor-pointer"
+                disabled={status === 'sending'}
+                className="bg-foreground text-card text-xs uppercase tracking-[0.15em] px-8 py-3 rounded-full hover:bg-primary transition-colors mt-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Sent!' : status === 'error' ? 'Failed - Retry' : 'Send Message'}
               </button>
+              {status === 'sent' && (
+                <p className="text-primary text-xs mt-3">Thank you! Your message has been received.</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-500 text-xs mt-3">Something went wrong. Please try again.</p>
+              )}
             </form>
           </motion.div>
         </div>

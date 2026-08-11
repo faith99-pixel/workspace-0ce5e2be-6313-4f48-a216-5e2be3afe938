@@ -117,7 +117,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
                 className="absolute bottom-8 left-8 sm:left-16 lg:left-24"
               >
                 <p className="text-white/30 text-xs uppercase tracking-[0.2em] mb-2">Contact</p>
-                <a href="tel:08034829700" className="text-white/60 text-sm hover:text-primary transition-colors">08034829700</a>
+                <a href="tel:+2348034829700" className="text-white/60 text-sm hover:text-primary transition-colors">+234 803 482 9700</a>
                 <span className="text-white/20 mx-3">|</span>
                 <a href="mailto:dominiczzbltd@yahoo.com" className="text-white/60 text-sm hover:text-primary transition-colors">dominiczzbltd@yahoo.com</a>
               </motion.div>

@@ -7,13 +7,13 @@ const team = [
   {
     name: 'Dominic Zebedee',
     role: 'Chief Executive Officer',
-    image: '/images/team/dominic.png',
+    image: '/images/team/felix.png',
     bio: 'Vast experience in construction with renowned companies in Nigeria. Former Project Manager at Patmos Construction and Managing Partner at Osca Asphalts Ltd.',
   },
   {
     name: 'Felix Airaodion',
     role: 'Project Director',
-    image: '/images/team/felix.png',
+    image: '/images/team/dominic.png',
     bio: 'Construction industry veteran. Former Site Manager at Hispanic Construction Lagos and Project Manager at Osca Asphalt Ltd.',
   },
   {
