@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { X, ArrowUpRight } from 'lucide-react';
@@ -24,6 +24,13 @@ interface NavigationProps {
 
 export default function Navigation({ currentPage, onNavigate }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleNav = (page: Page) => {
     onNavigate(page);
@@ -56,14 +63,11 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
       </div>
 
       {/* Logo - top left */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+      <button
         onClick={() => handleNav('home')}
         className="fixed top-6 left-6 z-[60] flex items-center cursor-pointer"
       >
-        <div className="relative w-[64px] h-[64px] sm:w-[80px] sm:h-[80px]">
+        <div className={`relative w-[64px] h-[64px] sm:w-[80px] sm:h-[80px] rounded-xl p-1 transition-all duration-500 ${scrolled ? 'bg-white/10 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
           <Image
             src="/images/logo/zzb-logo-nobg@4x.png"
             alt="ZZB"
@@ -74,9 +78,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
             priority
           />
         </div>
-      </motion.button>
-
-      {/* WhatsApp floating button */}
+      </button>
       <a
         href="https://wa.me/2348034829700"
         target="_blank"
