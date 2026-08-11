@@ -10,6 +10,9 @@ const josefin = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
+  verification: {
+    google: 'UKIB5j4MTJFGK3BkiJrGT1f-2JP6ikCFOa1MqaRy-DU',
+  },
   metadataBase: new URL('https://zzbconstruction.com'),
   title: {
     default: "ZZB Construction Company Ltd | Civil & Building Engineers Nigeria",
