@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({
+const josefin = Josefin_Sans({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${josefin.variable} antialiased`} suppressHydrationWarning>
         {children}
         <Toaster />
       </body>
