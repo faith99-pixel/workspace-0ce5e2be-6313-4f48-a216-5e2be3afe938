@@ -8,19 +8,19 @@ const team = [
     name: 'Dominic Zebedee',
     role: 'Chief Executive Officer',
     image: '/images/team/felix.png',
-    bio: 'Vast experience in construction with renowned companies in Nigeria. Former Project Manager at Patmos Construction and Managing Partner at Osca Asphalts Ltd.',
+    bio: 'He has a vast experience in construction industry, with renowned companies here in Nigeria. Project Manager at Patmos Construction. Managing Partner at Osca Asphalts Ltd.',
   },
   {
     name: 'Felix Airaodion',
     role: 'Project Director',
     image: '/images/team/dominic.png',
-    bio: 'Construction industry veteran. Former Site Manager at Hispanic Construction Lagos and Project Manager at Osca Asphalt Ltd.',
+    bio: 'A construction industry veteran with years of experience in the sector. Site Manager at Hispanic Construction Lagos. Business Partner at FA Imonitie & Co. Project Manager at Osca Asphalt Ltd.',
   },
   {
     name: 'Jawad AlSadi',
     role: 'Construction Expert',
     image: '/images/team/jawad.png',
-    bio: 'A Syrian expert with vast experience across continents. Supervised projects including Alsafa Sport Stadium, Beirut.',
+    bio: 'A Syrian construction expert with vast experience in construction industries here in Nigeria and other continents. Site Supervisor at Alsafa Sport Stadium, Beirut (Wahab Const). Civil Supervisor at Aim Group Nigeria Ltd. General Supervisor at Dipox Resin Floors Nigeria Ltd.',
   },
 ];
 
