@@ -130,7 +130,7 @@ export default function AboutSection() {
             <div className="flex gap-16 animate-marquee w-max">
               {doubled.map((client, i) => (
                 <div key={i} className="flex flex-col items-center gap-3 min-w-[120px] group">
-                  <div className="relative w-24 h-16 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300">
+                  <div className="relative w-24 h-16 transition-all duration-300">
                     <Image
                       src={client.logo}
                       alt={client.name}
