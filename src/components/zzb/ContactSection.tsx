@@ -191,11 +191,27 @@ export default function ContactSection() {
               >
                 {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Sent!' : status === 'error' ? 'Failed - Retry' : 'Send Message'}
               </button>
-              {status === 'sent' && (
-                <p className="text-primary text-xs mt-3">Thank you! Your message has been received.</p>
-              )}
-              {status === 'error' && (
-                <p className="text-red-500 text-xs mt-3">Something went wrong. Please try again.</p>
+              {(status === 'sent' || status === 'error') && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className={`mt-6 p-4 rounded-xl flex items-start gap-3 ${status === 'sent' ? 'bg-primary/10 border border-primary/20' : 'bg-red-50 border border-red-200'}`}
+                >
+                  <span className={`text-lg mt-0.5 ${status === 'sent' ? 'text-primary' : 'text-red-500'}`}>
+                    {status === 'sent' ? '✓' : '!'}
+                  </span>
+                  <div>
+                    <p className={`text-sm font-medium ${status === 'sent' ? 'text-primary' : 'text-red-700'}`}>
+                      {status === 'sent' ? 'Message Sent Successfully' : 'Submission Failed'}
+                    </p>
+                    <p className={`text-xs mt-0.5 ${status === 'sent' ? 'text-primary/70' : 'text-red-500'}`}>
+                      {status === 'sent'
+                        ? 'Thank you for reaching out. Our team will get back to you shortly at dominiczzbltd@yahoo.com.'
+                        : 'Something went wrong while sending your message. Please try again or contact us directly via email.'}
+                    </p>
+                  </div>
+                </motion.div>
               )}
             </form>
           </motion.div>
