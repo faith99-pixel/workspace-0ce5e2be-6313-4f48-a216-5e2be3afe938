@@ -10,25 +10,25 @@ const services = [
   {
     title: 'Civil & Building',
     desc: 'Rehabilitation, renovation and construction of roads, bridges, sewages, dams, structural works and buildings.',
-    image: '/images/projects/pdf_page10_img1.jpeg',
+    image: '/images/services/civil-building.png',
     page: 'services' as Page,
   },
   {
     title: 'Equipment Hiring',
     desc: 'Wide range of heavy construction equipment — tractors, excavators, graders, compactors — available for hire.',
-    image: '/images/equipment/pdf_page21_img4.jpeg',
+    image: '/images/services/equipment-hiring.png',
     page: 'equipment' as Page,
   },
   {
     title: 'Geosynthetics',
     desc: 'Authorized high-grade dealers of premium geotextile materials for road construction and erosion control.',
-    image: '/images/geotextile/pdf_page22_img4.jpeg',
+    image: '/images/services/geosynthetics.png',
     page: 'geotextile' as Page,
   },
   {
     title: 'Bitumen Supply',
     desc: 'Reliable dealers providing premium grade bitumen for road construction, asphalt and waterproofing.',
-    image: '/images/projects/pdf_page18_img1.jpeg',
+    image: '/images/services/bitumen-supply.png',
     page: 'contact' as Page,
   },
 ];
