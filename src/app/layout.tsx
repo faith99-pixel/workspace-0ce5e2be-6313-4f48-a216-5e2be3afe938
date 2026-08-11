@@ -10,21 +10,66 @@ const josefin = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ZZB Construction Company Ltd | Civil & Building Engineers",
+  metadataBase: new URL('https://zzbconstruction.com'),
+  title: {
+    default: "ZZB Construction Company Ltd | Civil & Building Engineers Nigeria",
+    template: "%s | ZZB Construction",
+  },
   description:
-    "ZZB Construction Company is a wholly owned Indigenous engineering outfit specializing in Civil & Building Engineering, Equipment Hiring, Geosynthetics, and Bitumen. RC: 728609",
+    "ZZB Construction Company Ltd (RC: 728609) is a leading indigenous engineering firm in Nigeria specializing in Civil & Building Engineering, Road Construction, Bridge Building, Equipment Hiring, Geosynthetics supply, and Bitumen. Trusted by MTN, UACN, FERMA, Lagos State and more.",
   keywords: [
     "ZZB Construction",
     "Civil Engineering Nigeria",
     "Building Contractors Lagos",
-    "Equipment Hiring",
-    "Geosynthetics",
-    "Bitumen Dealers",
-    "Road Construction",
-    "Bridge Construction",
+    "Road Construction Nigeria",
+    "Bridge Construction Nigeria",
+    "Equipment Hiring Nigeria",
+    "Geosynthetics Nigeria",
+    "Bitumen Dealers Nigeria",
+    "Construction Company Lagos",
+    "Indigenous Engineering Nigeria",
+    "FERMA contractor",
+    "Lagos State contractor",
+    "ZZB Construction Company Ltd",
   ],
+  authors: [{ name: 'ZZB Construction Company Ltd' }],
+  creator: 'ZZB Construction Company Ltd',
+  publisher: 'ZZB Construction Company Ltd',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  alternates: {
+    canonical: 'https://zzbconstruction.com',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_NG',
+    url: 'https://zzbconstruction.com',
+    siteName: 'ZZB Construction Company Ltd',
+    title: 'ZZB Construction Company Ltd | Civil & Building Engineers Nigeria',
+    description:
+      'Leading indigenous engineering firm in Nigeria. Civil & Building Engineering, Road & Bridge Construction, Equipment Hiring, Geosynthetics and Bitumen supply.',
+    images: [
+      {
+        url: '/images/hero/hero-bg.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'ZZB Construction Company Ltd',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ZZB Construction Company Ltd | Civil & Building Engineers Nigeria',
+    description:
+      'Leading indigenous engineering firm in Nigeria. Civil & Building Engineering, Road & Bridge Construction, Equipment Hiring, Geosynthetics and Bitumen supply.',
+    images: ['/images/hero/hero-bg.jpeg'],
+  },
   icons: {
-    icon: "/images/logo/zzb-logo.png",
+    icon: '/images/logo/zzb-logo.png',
+    apple: '/images/logo/zzb-logo.png',
   },
 };
 
