@@ -3,17 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const pastProjects = [
-  'Still Water Estate Road Network',
-  'Maritime Academy - Oron',
-  'Ajibulu Road Project - Lagos',
-  'Igosun Road - Ofa, Kwara',
-  'Several Asphaltic Projects - Local Airport, Lagos',
-  'UPDC Project - Lagos',
-  'Warehouse Flooring - Agara, Ogun State',
-  'Egbeda/Idimu Road - Lagos',
-];
-
 export default function ContactSection() {
   const [formState, setFormState] = useState({
     name: '', phone: '', email: '', service: '', message: '',
@@ -90,24 +79,6 @@ export default function ContactSection() {
                 <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Email</p>
                 <a href="mailto:dominiczzbltd@yahoo.com" className="text-sm hover:text-primary transition-colors">dominiczzbltd@yahoo.com</a>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="pt-8 border-t border-border"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4">Past Projects</p>
-              <ul className="space-y-1.5">
-                {pastProjects.map(p => (
-                  <li key={p} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <span className="w-1 h-1 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                    {p}
-                  </li>
-                ))}
-              </ul>
             </motion.div>
           </div>
 

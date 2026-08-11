@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navigation, { type Page } from '@/components/zzb/Navigation';
 import HeroSection from '@/components/zzb/HeroSection';
 import AboutSection from '@/components/zzb/AboutSection';
+import PastProjectsSection from '@/components/zzb/PastProjectsSection';
 import ServicesSection from '@/components/zzb/ServicesSection';
 import ProjectsSection from '@/components/zzb/ProjectsSection';
 import EquipmentSection from '@/components/zzb/EquipmentSection';
@@ -61,6 +62,7 @@ export default function Home() {
               <>
                 <HeroSection />
                 <AboutSection />
+                <PastProjectsSection />
                 <ServicesSection onNavigate={handleNavigate} />
                 <ProjectsSection />
                 <EquipmentSection />
