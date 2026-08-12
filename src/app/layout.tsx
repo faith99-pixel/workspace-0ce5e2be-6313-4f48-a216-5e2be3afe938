@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       'Leading indigenous engineering firm in Nigeria. Civil & Building Engineering, Road & Bridge Construction, Equipment Hiring, Geosynthetics and Bitumen supply.',
     images: [
       {
-        url: '/images/hero/hero-bg.jpeg',
+        url: '/images/logo/zzb-logo-nobg@4x.png',
         width: 1200,
         height: 630,
         alt: 'ZZB Construction Company Ltd',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: 'ZZB Construction Company Ltd | Civil & Building Engineers Nigeria',
     description:
       'Leading indigenous engineering firm in Nigeria. Civil & Building Engineering, Road & Bridge Construction, Equipment Hiring, Geosynthetics and Bitumen supply.',
-    images: ['/images/hero/hero-bg.jpeg'],
+    images: ['/images/logo/zzb-logo-nobg@4x.png'],
   },
   icons: {
     icon: [{ url: '/favicon.ico', sizes: '32x32' }, { url: '/images/logo/zzb-logo-nobg@4x.png', sizes: '192x192' }],
