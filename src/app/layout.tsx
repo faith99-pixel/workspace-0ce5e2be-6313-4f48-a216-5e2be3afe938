@@ -71,9 +71,26 @@ export const metadata: Metadata = {
     images: ['/images/hero/hero-bg.jpeg'],
   },
   icons: {
-    icon: '/images/logo/zzb-logo.png',
-    apple: '/images/logo/zzb-logo.png',
+    icon: [{ url: '/favicon.ico', sizes: '32x32' }, { url: '/images/logo/zzb-logo-nobg@4x.png', sizes: '192x192' }],
+    apple: '/images/logo/zzb-logo-nobg@4x.png',
   },
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'ZZB Construction Company Ltd',
+  url: 'https://zzbconstruction.com',
+  logo: 'https://zzbconstruction.com/images/logo/zzb-logo.webp',
+  image: 'https://zzbconstruction.com/images/logo/zzb-logo.webp',
+  description: 'Leading indigenous engineering firm in Nigeria specializing in Civil & Building Engineering, Road Construction, Bridge Building, Equipment Hiring, Geosynthetics and Bitumen supply.',
+  telephone: '+2348034829700',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'NG',
+    addressRegion: 'Lagos',
+  },
+  sameAs: ['https://www.zzbconstruction.com'],
 };
 
 export default function RootLayout({
@@ -84,6 +101,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${josefin.variable} antialiased`} suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         {children}
         <Toaster />
       </body>

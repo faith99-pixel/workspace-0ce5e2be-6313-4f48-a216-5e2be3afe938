@@ -6,7 +6,7 @@ import { ArrowDown } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-[calc(100svh-64px)] lg:h-[calc(100svh-88px)] min-h-[600px] w-full overflow-hidden bg-black">
       {/* Full-bleed hero image */}
       <motion.div
         className="absolute inset-0"
