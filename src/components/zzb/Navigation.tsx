@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { X, ArrowUpRight } from 'lucide-react';
 
-type Page = 'home' | 'about' | 'services' | 'projects' | 'equipment' | 'geotextile' | 'contact';
+type Page = 'home' | 'about' | 'services' | 'projects' | 'equipment' | 'geotextile' | 'contact' | 'quote';
 
 const navLinks: { label: string; page: Page }[] = [
   { label: 'Home', page: 'home' },
@@ -14,6 +14,7 @@ const navLinks: { label: string; page: Page }[] = [
   { label: 'Projects', page: 'projects' },
   { label: 'Equipment', page: 'equipment' },
   { label: 'Geotextile', page: 'geotextile' },
+  { label: 'Contact', page: 'contact' },
 ];
 
 interface NavigationProps {
@@ -78,16 +79,16 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
           ))}
         </nav>
 
-        {/* Contact Us button */}
+        {/* Get a Quote button */}
         <button
-          onClick={() => handleNav('contact')}
+          onClick={() => handleNav('quote')}
           className={`flex-shrink-0 px-5 py-2 rounded-lg text-[11px] uppercase tracking-[0.15em] font-medium transition-all cursor-pointer border ${
-            currentPage === 'contact'
+            currentPage === 'quote'
               ? 'bg-foreground text-white border-foreground'
               : 'border-foreground/20 text-foreground hover:bg-foreground hover:text-white'
           }`}
         >
-          Contact Us
+          Get a Quote
         </button>
       </header>
 
@@ -182,6 +183,15 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
                 transition={{ delay: 0.6 }}
                 className="absolute bottom-8 left-8 sm:left-16"
               >
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.55 }}
+                  onClick={() => handleNav('quote')}
+                  className="mb-6 px-6 py-3 rounded-lg bg-primary text-white text-[11px] uppercase tracking-[0.15em] font-medium cursor-pointer hover:bg-primary/90 transition-colors"
+                >
+                  Get a Quote
+                </motion.button>
                 <p className="text-white/30 text-xs uppercase tracking-[0.2em] mb-2">Contact</p>
                 <a href="tel:+2348034829700" className="text-white/60 text-sm hover:text-primary transition-colors">+234 803 482 9700</a>
                 <span className="text-white/20 mx-3">|</span>

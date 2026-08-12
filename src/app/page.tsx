@@ -12,6 +12,7 @@ import EquipmentSection from '@/components/zzb/EquipmentSection';
 import GeotextileSection from '@/components/zzb/GeotextileSection';
 import TeamSection from '@/components/zzb/TeamSection';
 import ContactSection from '@/components/zzb/ContactSection';
+import QuoteSection from '@/components/zzb/QuoteSection';
 import Footer from '@/components/zzb/Footer';
 import PageWrapper from '@/components/zzb/PageWrapper';
 
@@ -24,6 +25,7 @@ function SubPage({ page, onNavigate }: { page: Page; onNavigate: (p: Page) => vo
     equipment: 'Our Fleet',
     geotextile: 'Materials',
     contact: 'Get In Touch',
+    quote: 'Get a Quote',
   };
 
   return (
@@ -34,6 +36,7 @@ function SubPage({ page, onNavigate }: { page: Page; onNavigate: (p: Page) => vo
       {page === 'equipment' && <EquipmentSection />}
       {page === 'geotextile' && <GeotextileSection />}
       {page === 'contact' && <ContactSection />}
+      {page === 'quote' && <QuoteSection />}
     </PageWrapper>
   );
 }
